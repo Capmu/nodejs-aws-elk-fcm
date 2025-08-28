@@ -26,4 +26,12 @@ jobs:
       - name: Delete old container
         run: docker rm -f nodejs-aws-elk-fcm-container
       - name: Run a new container
-        run: docker run -d -p 3003:3003 --name nodejs-aws-elk-fcm-container capmu/nodejs-aws-elk-fcm:latest
+        run: |
+          docker run -d \
+          -p 3003:3003 \
+          --name nodejs-aws-elk-fcm-container \
+          --env DB_HOST="${{ secrets.DB_HOST }}" \
+          --env DB_USER="${{ secrets.DB_USER }}" \
+          --env DB_PASSWORD="${{ secrets.DB_PASSWORD }}" \
+          --env DB_NAME="${{ secrets.DB_NAME }}" \
+          capmu/nodejs-aws-elk-fcm:latest

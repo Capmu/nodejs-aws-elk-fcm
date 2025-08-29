@@ -25,7 +25,7 @@ db.connect((err) => {
 });
 
 app.get('/', (req, res) => {
-  res.send('Hello Capmu!');
+  res.send('Hello Capmu!!');
 });
 
 app.post('/add-user', express.json(), (req, res) => {
